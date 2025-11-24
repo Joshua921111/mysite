@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua | Metal Vocalist</title>
+    
+    <!-- Tailwind CSS (via CDN for instant usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Font: Impact for headers, Inter for body -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-impact {
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* Custom Animation for Pulse/Spin */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: #b91c1c; /* Red-700 */
+            color: white;
+        }
+
+        /* Equalizer Animation */
+        @keyframes bounce {
+            0%, 100% { height: 10%; }
+            50% { height: 100%; }
+        }
+        .animate-bounce-bar {
+            animation: bounce 0.5s infinite;
+        }
+    </style>
+    
+    <!-- Configure Tailwind Theme colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neutral: {
+                            950: '#0a0a0a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-neutral-950 text-neutral-200 relative">
+
+    <!-- Floating Social Sidebar (Right Side) -->
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col gap-6 items-center">
+        <div class="w-[1px] h-24 bg-gradient-to-b from-transparent to-neutral-600"></div>
+        <a href="https://instagram.com" target="_blank" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
+            <i data-lucide="instagram" class="w-6 h-6"></i>
+        </a>
+        <a href="mailto:showback100125@gmail.com" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
+            <i data-lucide="mail" class="w-6 h-6"></i>
+        </a>
+        <div class="w-[1px] h-24 bg-gradient-to-t from-transparent to-neutral-600"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <div onclick="scrollToSection('home')" class="text-2xl font-black text-white tracking-tighter uppercase cursor-pointer flex items-center gap-2 font-impact">
+                <i data-lucide="mic-2" class="text-red-600 w-7 h-7"></i>
+                <span><span class="text-red-600">VOCAL</span>IST</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <button onclick="scrollToSection('home')" class="nav-link text-sm font-bold tracking-widest text-neutral-400 hover:text-red-600 transition-all" data-target="home">HOME</button>
+                <button onclick="scrollToSection('about')" class="nav-link text-sm font-bold tracking-widest text-neutral-400 hover:text-red-600 transition-all" data-target="about">ABOUT</button>
+                <button onclick="scrollToSection('skills')" class="nav-link text-sm font-bold tracking-widest text-neutral-400 hover:text-red-600 transition-all" data-target="skills">SKILLS</button>
+                <button onclick="scrollToSection('demos')" class="nav-link text-sm font-bold tracking-widest text-neutral-400 hover:text-red-600 transition-all" data-target="demos">DEMOS</button>
+                <button onclick="scrollToSection('contact')" class="nav-link text-sm font-bold tracking-widest text-neutral-400 hover:text-red-600 transition-all" data-target="contact">CONTACT</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-neutral-900 shadow-xl border-t border-neutral-800">
+            <div class="flex flex-col p-4 space-y-4">
+                <button onclick="scrollToSection('home')" class="text-left text-neutral-300 font-bold hover:text-red-500 py-3 tracking-wider border-b border-neutral-800">HOME</button>
+                <button onclick="scrollToSection('about')" class="text-left text-neutral-300 font-bold hover:text-red-500 py-3 tracking-wider border-b border-neutral-800">ABOUT</button>
+                <button onclick="scrollToSection('skills')" class="text-left text-neutral-300 font-bold hover:text-red-500 py-3 tracking-wider border-b border-neutral-800">SKILLS</button>
+                <button onclick="scrollToSection('demos')" class="text-left text-neutral-300 font-bold hover:text-red-500 py-3 tracking-wider border-b border-neutral-800">DEMOS</button>
+                <button onclick="scrollToSection('contact')" class="text-left text-neutral-300 font-bold hover:text-red-500 py-3 tracking-wider border-b border-neutral-800">CONTACT</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-neutral-950 to-neutral-950 z-0"></div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+        <div class="absolute top-0 right-1/4 w-64 h-full bg-red-600/10 blur-[100px] transform rotate-12"></div>
+        <div class="absolute bottom-0 left-1/4 w-64 h-full bg-blue-900/10 blur-[100px] transform -rotate-12"></div>
+
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2 space-y-6 text-center md:text-left">
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter">
+                    Joshua
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-900 text-4xl md:text-5xl mt-2 font-bold tracking-normal uppercase font-serif">
+                        Vocalist | Metal & Rock
+                    </span>
+                </h1>
+                
+                <p class="text-xl text-neutral-400 max-w-lg leading-relaxed font-light mx-auto md:mx-0">
+                    <span class="text-white font-semibold">"SCREAMING FROM THE SOUL."</span><br/>
+                    More than just singing—it's a release of the soul. Specializing in Metal and Hard Rock styles, delivering explosive vocals and captivating stage presence. Dedicated to creating music that shakes the earth.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 justify-center md:justify-start">
+                    <button onclick="scrollToSection('demos')" class="px-8 py-4 bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-wider rounded-sm transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(220,38,38,0.4)] flex items-center justify-center gap-2">
+                        <i data-lucide="play" class="w-5 h-5"></i> Listen to Demos
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="px-8 py-4 border border-neutral-700 hover:border-white text-white font-bold uppercase tracking-wider rounded-sm transition-all hover:bg-white hover:text-black">
+                        Booking
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="md:w-1/2 relative flex justify-center">
+                <div class="relative w-80 h-96 md:w-96 md:h-[500px]">
+                    <div class="absolute inset-0 border-2 border-red-600/30 translate-x-4 translate-y-4 z-0"></div>
+                    <div class="absolute inset-0 bg-neutral-800 overflow-hidden z-10 shadow-2xl group">
+                        <img 
+                            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                            alt="Joshua performing" 
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 grayscale group-hover:grayscale-0"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <p class="text-red-500 font-bold text-sm tracking-widest mb-1">GENRE</p>
+                            <p class="text-white text-2xl font-black uppercase">Metal / Rock</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-red-600">
+            <i data-lucide="chevron-down" class="w-8 h-8"></i>
+        </div>
+    </section>
+
+    <!-- About / Stats Strip -->
+    <div id="about" class="bg-red-700 py-6 border-y border-red-800 relative z-20">
+        <div class="container mx-auto px-6 flex flex-wrap justify-around items-center gap-6 text-center">
+            <div class="flex items-center gap-3 text-black font-black uppercase tracking-tighter text-xl md:text-2xl">
+                <i data-lucide="mic-2" class="w-7 h-7"></i> Lead Vocals
+            </div>
+            <div class="hidden md:block w-2 h-2 bg-black rounded-full"></div>
+            <div class="flex items-center gap-3 text-black font-black uppercase tracking-tighter text-xl md:text-2xl">
+                <i data-lucide="music-2" class="w-7 h-7"></i> Songwriter
+            </div>
+            <div class="hidden md:block w-2 h-2 bg-black rounded-full"></div>
+            <div class="flex items-center gap-3 text-black font-black uppercase tracking-tighter text-xl md:text-2xl">
+                <i data-lucide="zap" class="w-7 h-7"></i> Performer
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-neutral-900 relative overflow-hidden">
+        <div class="absolute top-10 right-0 text-[200px] font-black text-white opacity-[0.02] pointer-events-none select-none leading-none truncate">SKILLS</div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col items-center justify-center mb-16 text-center">
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 uppercase italic font-impact text-4xl md:text-5xl">
+                    Voice & Power
+                </h2>
+                <div class="w-24 h-1 bg-red-600 transform -skew-x-12 mt-4"></div>
+                <p class="text-neutral-400 mt-6 max-w-2xl">
+                    My voice is my weapon, the stage is my battlefield. Here are the core skills honed through years of performance and practice.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Vocal Skills -->
+                <div class="bg-black/50 p-8 border border-neutral-800 hover:border-red-900/50 transition-colors group">
+                    <div class="flex items-center justify-between mb-8 border-b border-neutral-800 pb-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                            <span class="text-red-600"><i data-lucide="mic-2"></i></span>
+                            Vocals
+                        </h3>
+                    </div>
+                    <div class="space-y-8">
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Growling / Screaming</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[95%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Raspy / Distortion</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[90%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Clean Highs</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[85%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Mixed Voice</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[80%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                    </div>
+                </div>
+
+                <!-- Performance Skills -->
+                <div class="bg-black/50 p-8 border border-neutral-800 hover:border-red-900/50 transition-colors group">
+                    <div class="flex items-center justify-between mb-8 border-b border-neutral-800 pb-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                            <span class="text-red-600"><i data-lucide="zap"></i></span>
+                            Performance
+                        </h3>
+                    </div>
+                    <div class="space-y-8">
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Stage Presence</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[95%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Songwriting</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[85%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Rhythm</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[90%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                        <div><div class="flex justify-between mb-2 text-neutral-300 font-bold tracking-wide"><span>Band Leadership</span></div><div class="w-full bg-neutral-800 h-2"><div class="bg-red-700 h-full relative w-[85%]"><div class="absolute right-0 top-0 h-full w-[2px] bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demos Section -->
+    <section id="demos" class="py-24 bg-neutral-950 relative">
+        <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-red-900/10 to-transparent pointer-events-none"></div>
+
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-neutral-800 pb-6">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-2 uppercase italic">Music</h2>
+                    <p class="text-red-600 font-mono text-sm tracking-widest">DEMOS & RELEASES</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-2 text-neutral-500 text-sm">
+                    <i data-lucide="headphones" class="w-4 h-4"></i> Headphones recommended
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-1 gap-4 mb-8">
+                <!-- Demo 1 -->
+                <div class="demo-card flex flex-col md:flex-row items-center bg-neutral-900 border border-neutral-800 hover:border-neutral-600 p-4 transition-all duration-300 group" data-id="1">
+                    <div class="w-full md:w-24 h-24 flex-shrink-0 relative mb-4 md:mb-0 mr-0 md:mr-6 group-hover:shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="play-btn absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <i data-lucide="play" class="text-white w-8 h-8 fill-white"></i>
+                        </div>
+                        <div class="equalizer absolute bottom-1 right-1 flex gap-[2px] items-end h-4 hidden">
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.1s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.2s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.3s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.4s; height: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="flex-grow text-center md:text-left min-w-0">
+                        <h3 class="text-xl font-bold text-white truncate demo-title">Eternal Nightmare</h3>
+                        <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">Iron Soul</p>
+                    </div>
+                    <div class="px-4 py-2 hidden md:block">
+                        <span class="text-xs font-bold border border-neutral-700 text-neutral-400 px-3 py-1 rounded-full uppercase">Heavy Metal</span>
+                    </div>
+                    <div class="flex items-center gap-4 md:ml-8 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
+                        <span class="font-mono text-xs text-neutral-500">4:32</span>
+                        <button class="play-trigger w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo 2 -->
+                <div class="demo-card flex flex-col md:flex-row items-center bg-neutral-900 border border-neutral-800 hover:border-neutral-600 p-4 transition-all duration-300 group" data-id="2">
+                    <div class="w-full md:w-24 h-24 flex-shrink-0 relative mb-4 md:mb-0 mr-0 md:mr-6 group-hover:shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="play-btn absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <i data-lucide="play" class="text-white w-8 h-8 fill-white"></i>
+                        </div>
+                        <div class="equalizer absolute bottom-1 right-1 flex gap-[2px] items-end h-4 hidden">
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.1s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.2s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.3s; height: 60%"></div>
+                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.4s; height: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="flex-grow text-center md:text-left min-w-0">
+                        <h3 class="text-xl font-bold text-white truncate demo-title">Fading Echoes</h3>
+                        <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">Iron Soul</p>
+                    </div>
+                    <div class="px-4 py-2 hidden md:block">
+                        <span class="text-xs font-bold border border-neutral-700 text-neutral-400 px-3 py-1 rounded-full uppercase">Alternative Rock</span>
+                    </div>
+                    <div class="flex items-center gap-4 md:ml-8 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
+                        <span class="font-mono text-xs text-neutral-500">3:45</span>
+                        <button class="play-trigger w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Music (StreetVoice) -->
+            <div class="flex justify-center md:justify-start mt-6">
+                <a href="https://streetvoice.com" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-8 py-4 bg-[#c3002f] hover:bg-[#e00036] text-white font-bold rounded-sm text-sm transition-all flex items-center justify-center gap-3 hover:shadow-[0_0_20px_rgba(195,0,47,0.4)]">
+                    <i data-lucide="disc" class="w-5 h-5 animate-spin-slow"></i>
+                    Listen more on StreetVoice 街聲 <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-black relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto bg-neutral-900 p-1 border-t-4 border-red-600">
+                <div class="p-8 md:p-12 flex flex-col md:flex-row gap-12 bg-neutral-900">
+                    <div class="md:w-1/2 space-y-8">
+                        <div>
+                            <h2 class="text-4xl font-black text-white mb-2 uppercase">Get In Touch</h2>
+                            <p class="text-red-600 font-bold text-lg">BOOKING & COLLABORATION</p>
+                            <p class="text-neutral-400 mt-4 leading-relaxed">
+                                Looking for a vocalist? Need recording collaboration? Or want to book the band?
+                                <br/>Contact me anytime, let's make some noise.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4 group cursor-pointer">
+                                <div class="w-12 h-12 bg-neutral-800 flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-neutral-500 text-xs uppercase tracking-wider">Email</p>
+                                    <span class="text-white font-mono text-lg group-hover:text-red-500 transition-colors text-sm break-all">showback100125@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-neutral-800 flex items-center justify-center text-red-600">
+                                    <i data-lucide="music-2" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="text-neutral-500 text-xs uppercase tracking-wider">Location</p>
+                                    <span class="text-white text-lg">Taipei, Taiwan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2 bg-black p-8 border border-neutral-800">
+                        <form class="space-y-6" onsubmit="event.preventDefault()">
+                            <div>
+                                <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Name</label>
+                                <input type="text" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Your Name / Band Name">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Email</label>
+                                <input type="email" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="contact@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Message</label>
+                                <textarea rows="4" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button class="w-full bg-white hover:bg-red-600 hover:text-white text-black font-black py-4 uppercase tracking-widest transition-colors flex justify-center items-center gap-2">
+                                Send Message <i data-lucide="skip-forward" class="w-4 h-4 ml-1"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-neutral-950 text-center border-t border-neutral-900">
+        <div class="flex justify-center items-center gap-2 mb-4 opacity-50">
+            <div class="h-[1px] w-12 bg-neutral-700"></div>
+            <span class="text-neutral-700 text-xs uppercase tracking-[0.2em]">Rock Never Dies</span>
+            <div class="h-[1px] w-12 bg-neutral-700"></div>
+        </div>
+        <p class="text-neutral-600 text-sm">
+            © 2023 Joshua. All rights reserved. <br/>
+            <span class="text-xs mt-2 block text-neutral-800">Designed for the Heavy Metal Community</span>
+        </p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. Navbar Scroll Effect & Active Section
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-neutral-800', 'py-4');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-6');
+                navbar.classList.remove('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-neutral-800', 'py-4');
+            }
+        });
+
+        // 2. Smooth Scrolling
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        }
+
+        // 3. Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 4. Fake Audio Player Logic
+        let currentPlayingId = null;
+        const cards = document.querySelectorAll('.demo-card');
+
+        cards.forEach(card => {
+            const playTrigger = card.querySelector('.play-trigger');
+            const playOverlay = card.querySelector('.play-btn');
+            
+            const toggleMusic = () => {
+                const id = card.getAttribute('data-id');
+                const title = card.querySelector('.demo-title');
+                const equalizer = card.querySelector('.equalizer');
+                const triggerIcon = playTrigger.querySelector('svg'); // Lucide replaces <i> with <svg>
+                
+                // If clicking the currently playing song -> Stop it
+                if (currentPlayingId === id) {
+                    currentPlayingId = null;
+                    card.classList.remove('border-red-600', 'bg-neutral-800');
+                    card.classList.add('border-neutral-800');
+                    title.classList.remove('text-red-500');
+                    title.classList.add('text-white');
+                    equalizer.classList.add('hidden');
+                    
+                    // Reset Icons (Play)
+                    // Note: In a real app we'd switch the actual icon SVG content
+                    playTrigger.innerHTML = '<i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>';
+                    lucide.createIcons();
+                } 
+                // If clicking a new song -> Play it
+                else {
+                    // Reset all other cards first
+                    cards.forEach(c => {
+                        c.classList.remove('border-red-600', 'bg-neutral-800');
+                        c.classList.add('border-neutral-800');
+                        c.querySelector('.demo-title').classList.remove('text-red-500');
+                        c.querySelector('.demo-title').classList.add('text-white');
+                        c.querySelector('.equalizer').classList.add('hidden');
+                        c.querySelector('.play-trigger').innerHTML = '<i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>';
+                    });
+
+                    // Activate this card
+                    currentPlayingId = id;
+                    card.classList.remove('border-neutral-800');
+                    card.classList.add('border-red-600', 'bg-neutral-800');
+                    title.classList.remove('text-white');
+                    title.classList.add('text-red-500');
+                    equalizer.classList.remove('hidden');
+
+                    // Set Icon to Pause
+                    playTrigger.innerHTML = '<i data-lucide="pause" class="w-4 h-4 fill-current"></i>';
+                    lucide.createIcons();
+                }
+            };
+
+            playTrigger.addEventListener('click', toggleMusic);
+            playOverlay.addEventListener('click', toggleMusic);
+        });
+    </script>
+</body>
+</html>
