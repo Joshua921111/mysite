@@ -38,15 +38,6 @@
             background-color: #b91c1c; /* Red-700 */
             color: white;
         }
-
-        /* Equalizer Animation */
-        @keyframes bounce {
-            0%, 100% { height: 10%; }
-            50% { height: 100%; }
-        }
-        .animate-bounce-bar {
-            animation: bounce 0.5s infinite;
-        }
     </style>
     
     <!-- Configure Tailwind Theme colors -->
@@ -69,12 +60,22 @@
     <!-- Floating Social Sidebar (Right Side) -->
     <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col gap-6 items-center">
         <div class="w-[1px] h-24 bg-gradient-to-b from-transparent to-neutral-600"></div>
-        <a href="https://www.instagram.com/trem0ryo31o/" target="_blank" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
+        
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
             <i data-lucide="instagram" class="w-6 h-6"></i>
         </a>
+        
+        <!-- StreetVoice (New) -->
+        <a href="https://streetvoice.com/TRemory/" target="_blank" title="StreetVoice" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
+            <i data-lucide="disc" class="w-6 h-6"></i>
+        </a>
+
+        <!-- Email -->
         <a href="mailto:showback100125@gmail.com" class="p-3 rounded-full bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-red-500 hover:border-red-500 hover:scale-110 transition-all shadow-lg backdrop-blur-sm">
             <i data-lucide="mail" class="w-6 h-6"></i>
         </a>
+        
         <div class="w-[1px] h-24 bg-gradient-to-t from-transparent to-neutral-600"></div>
     </div>
 
@@ -140,7 +141,7 @@
                 
                 <div class="flex flex-col sm:flex-row gap-4 pt-6 justify-center md:justify-start">
                     <button onclick="scrollToSection('demos')" class="px-8 py-4 bg-red-700 hover:bg-red-600 text-white font-bold uppercase tracking-wider rounded-sm transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(220,38,38,0.4)] flex items-center justify-center gap-2">
-                        <i data-lucide="play" class="w-5 h-5"></i> Listen to Demos
+                        <i data-lucide="play" class="w-5 h-5"></i> Watch Demos
                     </button>
                     <button onclick="scrollToSection('contact')" class="px-8 py-4 border border-neutral-700 hover:border-white text-white font-bold uppercase tracking-wider rounded-sm transition-all hover:bg-white hover:text-black">
                         Booking
@@ -196,7 +197,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col items-center justify-center mb-16 text-center">
-                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 uppercase italic font-impact text-4xl md:text-5xl">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 uppercase italic font-impact">
                     Voice & Power
                 </h2>
                 <div class="w-24 h-1 bg-red-600 transform -skew-x-12 mt-4"></div>
@@ -241,84 +242,68 @@
         </div>
     </section>
 
-    <!-- Demos Section -->
+    <!-- Demos Section (Google Drive Embed) -->
     <section id="demos" class="py-24 bg-neutral-950 relative">
         <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-red-900/10 to-transparent pointer-events-none"></div>
 
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-neutral-800 pb-6">
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-black text-white mb-2 uppercase italic">Music</h2>
-                    <p class="text-red-600 font-mono text-sm tracking-widest">DEMOS & RELEASES</p>
-                </div>
-                <div class="mt-4 md:mt-0 flex gap-2 text-neutral-500 text-sm">
-                    <i data-lucide="headphones" class="w-4 h-4"></i> Headphones recommended
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-2 uppercase italic">Music Videos</h2>
+                    <p class="text-red-600 font-mono text-sm tracking-widest">LIVE & MUSIC VIDEOS</p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-1 gap-4 mb-8">
-                <!-- Demo 1 -->
-                <div class="demo-card flex flex-col md:flex-row items-center bg-neutral-900 border border-neutral-800 hover:border-neutral-600 p-4 transition-all duration-300 group" data-id="1">
-                    <div class="w-full md:w-24 h-24 flex-shrink-0 relative mb-4 md:mb-0 mr-0 md:mr-6 group-hover:shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-shadow">
-                        <img src="https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="play-btn absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                            <i data-lucide="play" class="text-white w-8 h-8 fill-white"></i>
-                        </div>
-                        <div class="equalizer absolute bottom-1 right-1 flex gap-[2px] items-end h-4 hidden">
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.1s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.2s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.3s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.4s; height: 60%"></div>
-                        </div>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Video 1: Riot!!! (Google Drive Embed) -->
+                <div class="bg-neutral-900 border border-neutral-800 p-4 hover:border-red-600 transition-colors group">
+                    <div class="relative w-full aspect-video bg-black mb-4 overflow-hidden shadow-lg">
+                        <iframe 
+                            class="w-full h-full object-cover" 
+                            src="https://drive.google.com/file/d/19Xsh4xcp8JhoQT0bXiXrGG2ipqh5jj8t/preview" 
+                            width="640" 
+                            height="480" 
+                            allow="autoplay"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
                     </div>
-                    <div class="flex-grow text-center md:text-left min-w-0">
-                        <h3 class="text-xl font-bold text-white truncate demo-title">Eternal Nightmare</h3>
-                        <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">Iron Soul</p>
-                    </div>
-                    <div class="px-4 py-2 hidden md:block">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-red-500 transition-colors">Riot!!! (cover)</h3>
+                            <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">TRemory</p>
+                        </div>
                         <span class="text-xs font-bold border border-neutral-700 text-neutral-400 px-3 py-1 rounded-full uppercase">Heavy Metal</span>
                     </div>
-                    <div class="flex items-center gap-4 md:ml-8 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
-                        <span class="font-mono text-xs text-neutral-500">4:32</span>
-                        <button class="play-trigger w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">
-                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
-                        </button>
-                    </div>
                 </div>
 
-                <!-- Demo 2 -->
-                <div class="demo-card flex flex-col md:flex-row items-center bg-neutral-900 border border-neutral-800 hover:border-neutral-600 p-4 transition-all duration-300 group" data-id="2">
-                    <div class="w-full md:w-24 h-24 flex-shrink-0 relative mb-4 md:mb-0 mr-0 md:mr-6 group-hover:shadow-[0_0_15px_rgba(220,38,38,0.3)] transition-shadow">
-                        <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <div class="play-btn absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                            <i data-lucide="play" class="text-white w-8 h-8 fill-white"></i>
-                        </div>
-                        <div class="equalizer absolute bottom-1 right-1 flex gap-[2px] items-end h-4 hidden">
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.1s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.2s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.3s; height: 60%"></div>
-                            <div class="w-1 bg-red-500 animate-bounce-bar" style="animation-delay: 0.4s; height: 60%"></div>
-                        </div>
+                <!-- Video 2: Fading Echoes (Google Drive Embed) -->
+                <div class="bg-neutral-900 border border-neutral-800 p-4 hover:border-red-600 transition-colors group">
+                    <div class="relative w-full aspect-video bg-black mb-4 overflow-hidden shadow-lg">
+                        <!-- 重複上述步驟取得第二個影片的連結 -->
+                        <iframe 
+                            class="w-full h-full object-cover" 
+                            src="https://drive.google.com/file/d/SECOND_VIDEO_URL_HERE/preview" 
+                            width="640" 
+                            height="480" 
+                            allow="autoplay"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
                     </div>
-                    <div class="flex-grow text-center md:text-left min-w-0">
-                        <h3 class="text-xl font-bold text-white truncate demo-title">Fading Echoes</h3>
-                        <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">Iron Soul</p>
-                    </div>
-                    <div class="px-4 py-2 hidden md:block">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-red-500 transition-colors">Fading Echoes</h3>
+                            <p class="text-neutral-400 text-sm uppercase tracking-wider mt-1">Iron Soul</p>
+                        </div>
                         <span class="text-xs font-bold border border-neutral-700 text-neutral-400 px-3 py-1 rounded-full uppercase">Alternative Rock</span>
-                    </div>
-                    <div class="flex items-center gap-4 md:ml-8 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
-                        <span class="font-mono text-xs text-neutral-500">3:45</span>
-                        <button class="play-trigger w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">
-                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- More Music (StreetVoice) -->
-            <div class="flex justify-center md:justify-start mt-6">
-                <a href="https://streetvoice.com" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-8 py-4 bg-[#c3002f] hover:bg-[#e00036] text-white font-bold rounded-sm text-sm transition-all flex items-center justify-center gap-3 hover:shadow-[0_0_20px_rgba(195,0,47,0.4)]">
+            <!-- More Music (StreetVoice Updated) -->
+            <div class="flex justify-center md:justify-start">
+                <a href="https://streetvoice.com/TRemory/" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-8 py-4 bg-[#c3002f] hover:bg-[#e00036] text-white font-bold rounded-sm text-sm transition-all flex items-center justify-center gap-3 hover:shadow-[0_0_20px_rgba(195,0,47,0.4)]">
                     <i data-lucide="disc" class="w-5 h-5 animate-spin-slow"></i>
                     Listen more on StreetVoice 街聲 <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
@@ -436,64 +421,6 @@
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-        });
-
-        // 4. Fake Audio Player Logic
-        let currentPlayingId = null;
-        const cards = document.querySelectorAll('.demo-card');
-
-        cards.forEach(card => {
-            const playTrigger = card.querySelector('.play-trigger');
-            const playOverlay = card.querySelector('.play-btn');
-            
-            const toggleMusic = () => {
-                const id = card.getAttribute('data-id');
-                const title = card.querySelector('.demo-title');
-                const equalizer = card.querySelector('.equalizer');
-                const triggerIcon = playTrigger.querySelector('svg'); // Lucide replaces <i> with <svg>
-                
-                // If clicking the currently playing song -> Stop it
-                if (currentPlayingId === id) {
-                    currentPlayingId = null;
-                    card.classList.remove('border-red-600', 'bg-neutral-800');
-                    card.classList.add('border-neutral-800');
-                    title.classList.remove('text-red-500');
-                    title.classList.add('text-white');
-                    equalizer.classList.add('hidden');
-                    
-                    // Reset Icons (Play)
-                    // Note: In a real app we'd switch the actual icon SVG content
-                    playTrigger.innerHTML = '<i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>';
-                    lucide.createIcons();
-                } 
-                // If clicking a new song -> Play it
-                else {
-                    // Reset all other cards first
-                    cards.forEach(c => {
-                        c.classList.remove('border-red-600', 'bg-neutral-800');
-                        c.classList.add('border-neutral-800');
-                        c.querySelector('.demo-title').classList.remove('text-red-500');
-                        c.querySelector('.demo-title').classList.add('text-white');
-                        c.querySelector('.equalizer').classList.add('hidden');
-                        c.querySelector('.play-trigger').innerHTML = '<i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>';
-                    });
-
-                    // Activate this card
-                    currentPlayingId = id;
-                    card.classList.remove('border-neutral-800');
-                    card.classList.add('border-red-600', 'bg-neutral-800');
-                    title.classList.remove('text-white');
-                    title.classList.add('text-red-500');
-                    equalizer.classList.remove('hidden');
-
-                    // Set Icon to Pause
-                    playTrigger.innerHTML = '<i data-lucide="pause" class="w-4 h-4 fill-current"></i>';
-                    lucide.createIcons();
-                }
-            };
-
-            playTrigger.addEventListener('click', toggleMusic);
-            playOverlay.addEventListener('click', toggleMusic);
         });
     </script>
 </body>
