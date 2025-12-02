@@ -349,20 +349,25 @@
                     </div>
 
                     <div class="md:w-1/2 bg-black p-8 border border-neutral-800">
-                        <form class="space-y-6" onsubmit="event.preventDefault()">
+                        <form class="space-y-6" action="https://formsubmit.co/showback100125@gmail.com" method="POST">
+                            <!-- Honeypot to prevent spam -->
+                            <input type="text" name="_honey" style="display:none">
+                            <!-- Disable Captcha (Optional) -->
+                            <input type="hidden" name="_captcha" value="false">
+
                             <div>
                                 <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Name</label>
-                                <input type="text" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Your Name / Band Name">
+                                <input type="text" name="name" required class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Your Name / Band Name">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Email</label>
-                                <input type="email" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="contact@example.com">
+                                <input type="email" name="email" required class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="contact@example.com">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-red-600 uppercase mb-2 tracking-widest">Message</label>
-                                <textarea rows="4" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Tell me about your project..."></textarea>
+                                <textarea name="message" required rows="4" class="w-full bg-neutral-900 border-b-2 border-neutral-800 px-4 py-3 text-white focus:outline-none focus:border-red-600 transition-colors placeholder-neutral-700" placeholder="Tell me about your project..."></textarea>
                             </div>
-                            <button class="w-full bg-white hover:bg-red-600 hover:text-white text-black font-black py-4 uppercase tracking-widest transition-colors flex justify-center items-center gap-2">
+                            <button type="submit" class="w-full bg-white hover:bg-red-600 hover:text-white text-black font-black py-4 uppercase tracking-widest transition-colors flex justify-center items-center gap-2">
                                 Send Message <i data-lucide="skip-forward" class="w-4 h-4 ml-1"></i>
                             </button>
                         </form>
